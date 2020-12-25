@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,15 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'index']);
 
 Route::get('/register', [RegisterController::class, 'register']);
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/logout', [RegisterController::class, 'logout']);
 Route::get('/login', [RegisterController::class, 'login']);
 Route::post('/login', [RegisterController::class, 'loginUser']);
+Route::get('/product/create', [ProductController::class, 'create']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/products/{id}/edit', [ProductController::class, 'edit']);
+Route::post('/products/{id}/update', [ProductController::class, 'update']);
