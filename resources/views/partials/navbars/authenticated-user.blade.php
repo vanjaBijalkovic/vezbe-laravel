@@ -2,6 +2,9 @@
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="/product/create">Create Product</a>
   </li>
+  <li class="nav-items">
+    <a class="nav-link active" aria-current="page" href="/category">Create Category</a>
+  </li>
 </ul>
 
 

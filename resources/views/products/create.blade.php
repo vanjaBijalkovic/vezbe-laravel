@@ -18,6 +18,12 @@
     <input type="checkbox" class="form-check-input" id="available" name="available" value="1">
     <label class="form-check-label" for="available">Is sold</label>
   </div>
+
+  <select multiple="multiple" name="categories[]" id="categories">
+    @foreach($categories as $category)
+      <option value="{{$category->id}}">{{$category->name}}</option>
+    @endforeach
+  </select>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection

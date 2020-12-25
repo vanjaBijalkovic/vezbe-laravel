@@ -5,33 +5,39 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
     public function index() 
     {
-        $products = Product::where('available', false)->paginate(1);
+        $products = Product::where('available', false)->paginate(10);
 
         return view('products.index', compact('products'));
     }
 
     public function create()
     {
-        return view('products.create');
+        $categories = Category::get();
+
+        return view('products.create', compact('categories'));
     }
 
     public function store(ProductRequest $request)
     {
+        info($request);
         $data = $request->validated();
-        Product::create($data);
+        $product = Product::create($data);
+
+        $product->categories()->attach($request->categories);
 
         return redirect('/');
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-
+        $product = Product::with('categories')->findOrFail($id);
+        info($product);
         return view('products.show', compact('product'));
     }
 

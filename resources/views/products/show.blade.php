@@ -14,6 +14,15 @@
         {{ $product->description }}
     </div>
     <div>
+        <ul>
+            @foreach($product->categories as $category)
+                <li>
+                    {{ $category->name }}
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    <div>
         {{ $product->available == 0 ? 'Available' : 'Not' }}
     </div>
 @endsection
